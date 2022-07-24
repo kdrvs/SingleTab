@@ -1,6 +1,5 @@
 
-
-check_storage();
+bild_popUp();
 
 document.addEventListener('DOMContentLoaded', function(){
     document.getElementById('input_active')
@@ -8,11 +7,10 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 
-
 async function change_active_mode(){
     let mode = await get_active();
     await set_active(!mode);
-    
+    bild_popUp();    
 };
 
 async function set_active(bool_value){
@@ -26,25 +24,18 @@ async function get_active(){
     return value.active;
 };
 
-async function check_storage(){
+async function bild_popUp(){
     let mode = await get_active();
-    if(mode != true || mode != false)
-    {
-        await set_active(true);
+    
+    if(mode == 'true' || mode == true){
+        change_mode_btn('input_active', '#4ea0ed', 'Включен');
+    } else {
+        change_mode_btn('input_active', '#adc5db', 'Выключен');
     }
 };
 
-async function get_log(){
-    console.log(await get_active());
+function change_mode_btn(dom, color, text){
+    let btn = document.getElementById(dom);
+    btn.style.backgroundColor = color;
+    btn.innerText = text;
 };
-
-
-
-let btn = document.createElement('button');
-btn.style.backgroundColor = "#FF0000";
-btn.innerText = "BUTTON";
-btn.onclick = function() { get_log(); };
-document.body.appendChild(btn);
-
-document.body.style.border = "5px solid blue";
-

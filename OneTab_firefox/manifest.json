@@ -26,7 +26,7 @@
     "content_scripts": [
         {
             "matches": ["*://*/*"],
-            "js": ["index.js"]
+            "js": ["main.js"]
         }
     ]
 
