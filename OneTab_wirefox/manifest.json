@@ -1,0 +1,33 @@
+{
+    "manifest_version": 2,
+    "name": "OneTab",
+    "version": "1.0",
+
+    "description": "Ссылки открываются в одном окне",
+    "homepage_url": "https://github.com/kdrvs",
+
+    "permissions": [
+        "activeTab",
+        "storage"
+    ],
+
+    "browser_action": {
+        "default_title": "OneTab",
+        "default_popup": "index.html"
+    },
+
+    "applications": {
+        "gecko": {
+            "id": "OneTab@kdrvs",
+            "strict_min_version": "45.0"
+        }
+    },
+
+    "content_scripts": [
+        {
+            "matches": ["*://*/*"],
+            "js": ["index.js"]
+        }
+    ]
+
+}
