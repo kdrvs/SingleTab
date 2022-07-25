@@ -24,7 +24,7 @@
     },
 
     "background": {
-        "scripts": ["background.js"]
+        "scripts": ["main.js"]
     },
 
     "content_scripts": [

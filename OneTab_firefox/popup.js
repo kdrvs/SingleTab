@@ -1,5 +1,3 @@
-import {setActive} from './background.js'; //delete this shit and storage data to background html;
-import {setUrls} from './backgraund.js';
 
 const INPUT_MODE_ID = "input_active";
 const INPUT_NEWSITE_ID = "newsite";
@@ -62,7 +60,6 @@ async function set_url_to_storage(url){
         await browser.storage.local.set({
             [STORAGE_URLS]: array
         });
-        setUrls(array);
     }
 };
 
@@ -72,12 +69,10 @@ async function delete_url_from_storage(value){
     await browser.storage.local.set({
         [STORAGE_URLS]: array
     });
-    setUrls(array);
 };
 
 async function get_urls_array(){
     let value = await browser.storage.local.get(STORAGE_URLS);
-    setUrls(value.urls);
     return value.urls;
 };
 
@@ -91,7 +86,6 @@ async function set_active(bool_value){
     await browser.storage.local.set({
         [STORAGE_MODE]: bool_value
     });
-    setActive(bool_value);
 };
 
 async function get_active(){
@@ -100,7 +94,6 @@ async function get_active(){
         await set_active(true);
         value = await browser.storage.local.get(STORAGE_MODE);
     }
-    setActive(value.active);
     return value.active;
 };
 
