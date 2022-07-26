@@ -1,10 +1,11 @@
-const STORAGE_URLS = "urls";
-const STORAGE_MODE = "active";
+const URLS = "urls";
+const MODE = "mode";
+const STORAGE = browser.storage.local;
 
 setListener();
 
 async function setListener(){
-    let mode = await get_active();
+    let mode = await get_mode();
     let host_keeped = await check_domain();
     if(mode){
         if(host_keeped){
@@ -16,17 +17,17 @@ async function setListener(){
     }
 };
 
-async function get_active(){
-    let value = await browser.storage.local.get(STORAGE_MODE);
-    if(value.active === undefined){
+async function get_mode(){
+    let value = await STORAGE.get(MODE);
+    if(value.mode === undefined){
         return false;
     }
-    return value.active;
+    return value.mode;
 };
 
 
 async function check_domain(){
-    let value = await browser.storage.local.get(STORAGE_URLS);
+    let value = await STORAGE.get(URLS);
     domain = window.location.hostname;
     if(value.urls !== undefined){
         console.log("Extension: urls exist");

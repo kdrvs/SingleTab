@@ -4,17 +4,17 @@ const INPUT_NEWSITE_ID = "newsite";
 const INPUT_NEWSITE_BTN_ID = "newsite_btn";
 const URLS_ARRAY_ID = "urls_array";
 
-const STORAGE_URLS = "urls";
-const STORAGE_MODE = "active";
-
+const URLS = "urls";
+const MODE = "mode";
 const STORAGE = browser.storage.local;
+
 
 build_popUp();
 
 document.addEventListener('DOMContentLoaded', function(){
 
     document.getElementById(INPUT_MODE_ID)
-    .addEventListener('click', change_active_mode);
+    .addEventListener('click', change_mode);
 
     document.getElementById(INPUT_NEWSITE_ID)
     .addEventListener('keypress', function(event){
@@ -33,80 +33,76 @@ document.addEventListener('DOMContentLoaded', function(){
 async function set_url(){
     let url = document.getElementById(INPUT_NEWSITE_ID).value;
     if(url != ''){
-        url = url.toLowerCase().replace(/\//g,'')
-            .replace(/\s/g, '')
-            .replace(/:/g, '')
-            .replace(/https/g,'')
-            .replace(/http/g,'')
-            .replace(/,/g, '.');
-            
-        await set_url_to_storage(url);
-        build_popUp();
+        url = url.toLowerCase().replace(/\/|\s|:|https|http/g,'');
+        if(url !== undefined){
+            await storage_set(url);
+            build_popUp();
+        }   
     }
 };
 
 async function delete_url(id){
-    await delete_url_from_storage(id);
+    await storage_delete(id);
     build_popUp();
 };
 
-async function set_url_to_storage(url){
-    let array = await get_urls_array();
+async function storage_set(url){
+    let array = await storage_get();
     if(array === undefined){
         array = [];
     }
     if(array.indexOf(url) == -1){
         array.push(url);
         await STORAGE.set({
-            [STORAGE_URLS]: array
+            [URLS]: array
         });
     }
 };
 
-async function delete_url_from_storage(value){
-    let array = await get_urls_array();
+async function storage_delete(value){
+    let array = await storage_get();
     array.splice(array.indexOf(value), 1);
     await STORAGE.set({
-        [STORAGE_URLS]: array
+        [URLS]: array
     });
 };
 
-async function get_urls_array(){
-    let value = await STORAGE.get(STORAGE_URLS);
+async function storage_get(){
+    let value = await STORAGE.get(URLS);
     return value.urls;
 };
 
-async function change_active_mode(){
-    let mode = await get_active();
-    await set_active(!mode);
+async function change_mode(){
+    let mode = await get_mode();
+    await set_mode(!mode);
     build_popUp();  
 };
 
-async function set_active(bool_value){
+async function set_mode(bool_value){
     await STORAGE.set({
-        [STORAGE_MODE]: bool_value
+        [MODE]: bool_value
     });
 };
 
-async function get_active(){
-    let value = await STORAGE.get(STORAGE_MODE);
-    if(value.active === undefined){
-        await set_active(true);
-        value = await STORAGE.get(STORAGE_MODE);
+async function get_mode(){
+    let value = await STORAGE.get(MODE);
+    if(value.mode === undefined){
+        await set_mode(true);
+        value = await STORAGE.get(MODE);
     }
-    return value.active;
+    return value.mode;
 };
 
 async function build_popUp(){
-    let mode = await get_active();
+    let mode = await get_mode();
     
     if(mode == true){
-        change_mode_btn(INPUT_MODE_ID, '#4ea0ed', 'Включен');
+        change_mode_btn(INPUT_MODE_ID, '#4ea0ed', 'Enabled');
     } else {
-        change_mode_btn(INPUT_MODE_ID, '#adc5db', 'Выключен');
+        change_mode_btn(INPUT_MODE_ID, '#adc5db', 'Not Enabled');
     }
 
-    let urls = await get_urls_array();
+    let urls = await storage_get();
     if(urls !== undefined){
         document.getElementById(INPUT_NEWSITE_ID).value = '';
         var content = document.getElementById(URLS_ARRAY_ID);
