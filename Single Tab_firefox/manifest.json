@@ -1,9 +1,9 @@
 {
     "manifest_version": 2,
-    "name": "OneTab",
+    "name": "Single Tab",
     "version": "1.0",
 
-    "description": "Ссылки открываются в одном окне",
+    "description": "Blocks the opening of external tabs",
     "homepage_url": "https://github.com/kdrvs",
 
     "icons": {
@@ -21,13 +21,13 @@
     ],
 
     "browser_action": {
-        "default_title": "OneTab",
+        "default_title": "Single Tab",
         "default_popup": "index.html"
     },
 
     "applications": {
         "gecko": {
-            "id": "OneTab@kdrvs",
+            "id": "SingleTab@kdrvs",
             "strict_min_version": "45.0"
         }
     },
