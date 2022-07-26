@@ -6,9 +6,18 @@
     "description": "Ссылки открываются в одном окне",
     "homepage_url": "https://github.com/kdrvs",
 
+    "icons": {
+        "16": "icons/16.png",
+        "32": "icons/32.png",
+        "48": "icons/48.png",
+        "128": "icons/128.png"
+
+    },
+
     "permissions": [
         "activeTab",
-        "storage"
+        "storage",
+        "<all_urls>"
     ],
 
     "browser_action": {
@@ -21,10 +30,6 @@
             "id": "OneTab@kdrvs",
             "strict_min_version": "45.0"
         }
-    },
-
-    "background": {
-        "scripts": ["main.js"]
     },
 
     "content_scripts": [

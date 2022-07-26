@@ -1,10 +1,9 @@
 const STORAGE_URLS = "urls";
 const STORAGE_MODE = "active";
 
+setListener();
 
-run();
-
-async function run(){
+async function setListener(){
     let mode = await get_active();
     let host_keeped = await check_domain();
     if(mode){

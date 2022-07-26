@@ -7,7 +7,7 @@ const URLS_ARRAY_ID = "urls_array";
 const STORAGE_URLS = "urls";
 const STORAGE_MODE = "active";
 
-
+const STORAGE = browser.storage.local;
 
 build_popUp();
 
@@ -57,7 +57,7 @@ async function set_url_to_storage(url){
     }
     if(array.indexOf(url) == -1){
         array.push(url);
-        await browser.storage.local.set({
+        await STORAGE.set({
             [STORAGE_URLS]: array
         });
     }
@@ -66,13 +66,13 @@ async function set_url_to_storage(url){
 async function delete_url_from_storage(value){
     let array = await get_urls_array();
     array.splice(array.indexOf(value), 1);
-    await browser.storage.local.set({
+    await STORAGE.set({
         [STORAGE_URLS]: array
     });
 };
 
 async function get_urls_array(){
-    let value = await browser.storage.local.get(STORAGE_URLS);
+    let value = await STORAGE.get(STORAGE_URLS);
     return value.urls;
 };
 
@@ -83,16 +83,16 @@ async function change_active_mode(){
 };
 
 async function set_active(bool_value){
-    await browser.storage.local.set({
+    await STORAGE.set({
         [STORAGE_MODE]: bool_value
     });
 };
 
 async function get_active(){
-    let value = await browser.storage.local.get(STORAGE_MODE);
+    let value = await STORAGE.get(STORAGE_MODE);
     if(value.active === undefined){
         await set_active(true);
-        value = await browser.storage.local.get(STORAGE_MODE);
+        value = await STORAGE.get(STORAGE_MODE);
     }
     return value.active;
 };
