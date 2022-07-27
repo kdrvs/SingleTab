@@ -1,5 +1,5 @@
 
-const INPUT_MODE_ID = "input_active";
+const INPUT_MODE_ID = "mode";
 const INPUT_NEWSITE_ID = "newsite";
 const INPUT_NEWSITE_BTN_ID = "newsite_btn";
 const URLS_ARRAY_ID = "urls_array";
@@ -97,9 +97,9 @@ async function build_popUp(){
     let mode = await get_mode();
     
     if(mode == true){
-        change_mode_btn(INPUT_MODE_ID, '#4ea0ed', 'Enabled');
+        change_mode_btn(INPUT_MODE_ID, 'enabled', 'Enabled');
     } else {
-        change_mode_btn(INPUT_MODE_ID, '#adc5db', 'Not Enabled');
+        change_mode_btn(INPUT_MODE_ID, 'disabled', 'Not Enabled');
     }
 
     let urls = await storage_get();
@@ -114,23 +114,27 @@ async function build_popUp(){
 };
 
 function append_value_to_list(dom, value){
-    let div = document.createElement('div');
+    let tr = document.createElement('tr');
 
-    let p = document.createElement('p');
-    p.innerText = value;
+    let td_content = document.createElement('td');
+    td_content.className = 'item';
+    td_content.innerText = value;
 
+    let td_btn = document.createElement('td');
     let btn = document.createElement('button');
     btn.type = 'button';
     btn.id = value;
+    btn.className = 'on_item';
     btn.addEventListener('click', function(){ delete_url(value)});
+    td_btn.appendChild(btn);
 
-    div.appendChild(p);
-    div.appendChild(btn);
-    dom.appendChild(div);
+    tr.appendChild(td_content);
+    tr.appendChild(td_btn);
+    dom.appendChild(tr);
 };
 
-function change_mode_btn(dom, color, text){
+function change_mode_btn(dom, _class, text){
     let btn = document.getElementById(dom);
-    btn.style.backgroundColor = color;
+    btn.className = _class;
     btn.innerText = text;
 };
