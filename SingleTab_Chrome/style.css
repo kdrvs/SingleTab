@@ -1,0 +1,114 @@
+html {
+    background-color: #EEE;
+    color: #303030;
+    width: 250px;
+}
+
+button {
+    outline: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #ccc;
+}
+
+.status {
+    text-align: center;
+    padding-bottom: 15px;
+}
+.status p {
+    font-size: 12px;
+
+}
+
+.enabled {
+    width: 100px;
+    height: 25px;
+    background-color: #66CDAA;
+}
+
+.disabled {
+    width: 100px;
+    height: 25px;
+    background-color: #ccc;
+}
+
+.del_btn{
+    background-color: #ccc;
+}
+
+.layout {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+table {
+    font-size: 12px;
+    border-spacing: 3px;;
+    border-collapse: collapse;
+}
+
+table tr {
+    border-bottom: 1px solid #ccc;
+}
+
+table tr td {
+    display: inline-grid;
+    vertical-align: middle;
+    padding: 3px;
+    margin-left: 9px;
+    word-wrap: anywhere;
+}
+
+input {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+.new_item {
+    text-align: center;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+
+}
+
+.new_item input {
+    display: inline-grid;
+    vertical-align: bottom;
+    width: 150px;
+}
+
+.new_item button {
+    width: 20px;
+    height: 20px;
+    display: inline-grid;
+    vertical-align: bottom;
+    background-image: url(/icons/append.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.item {
+    width: 140px;
+}
+
+.on_item {
+    height: 20px;
+    width: 20px;
+    background-image: url(/icons/remove.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+footer {
+    height: 30px;
+    text-align: center;
+    padding-top: 15px;
+}
+
+footer p {
+    font-size: 11px;
+}
