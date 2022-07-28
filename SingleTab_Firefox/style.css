@@ -3,6 +3,10 @@ html {
     color: #303030;
 }
 
+body {
+    min-height: 200px;
+}
+
 button {
     outline: none;
     cursor: pointer;
@@ -103,11 +107,8 @@ input {
 }
 
 footer {
-    height: 30px;
+    font-size: 11px;
+    height: 50px;
     text-align: center;
     padding-top: 15px;
-}
-
-footer p {
-    font-size: 11px;
 }

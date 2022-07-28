@@ -3,9 +3,11 @@ const INPUT_MODE_ID = "mode";
 const INPUT_NEWSITE_ID = "newsite";
 const INPUT_NEWSITE_BTN_ID = "newsite_btn";
 const URLS_ARRAY_ID = "urls_array";
+const CHECK = "check";
 
 const URLS = "urls";
 const MODE = "mode";
+const OVERRIDE = 'override';
 const STORAGE = browser.storage.local;
 
 
@@ -26,6 +28,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
     document.getElementById(INPUT_NEWSITE_BTN_ID)
     .addEventListener('click', set_url);
+
+    document.getElementById(CHECK)
+    .addEventListener('click', change_override);
 
 });
 
@@ -75,7 +80,7 @@ async function storage_get(){
 async function change_mode(){
     let mode = await get_mode();
     await set_mode(!mode);
-    build_popUp();  
+    await build_popUp();  
 };
 
 async function set_mode(bool_value){
@@ -95,7 +100,7 @@ async function get_mode(){
 
 async function build_popUp(){
     let mode = await get_mode();
-    
+    let override = await override_mode();
     if(mode == true){
         change_mode_btn(INPUT_MODE_ID, 'enabled', 'Enabled');
     } else {
@@ -111,6 +116,7 @@ async function build_popUp(){
             append_value_to_list(content, url);
         });
     }
+    render_check_box(override);
 };
 
 function append_value_to_list(dom, value){
@@ -137,4 +143,31 @@ function change_mode_btn(dom, _class, text){
     let btn = document.getElementById(dom);
     btn.className = _class;
     btn.innerText = text;
+};
+
+async function override_mode(){
+    let mode = await STORAGE.get(OVERRIDE);
+    if(mode.override === undefined){
+        await set_override(false);
+        mode = await STORAGE.get(OVERRIDE);
+    }
+    return mode.override;
+};
+
+async function set_override(bool_value){
+    await STORAGE.set({
+        [OVERRIDE]: bool_value
+    });
+};
+
+async function change_override(){
+    let mode = await override_mode();
+    console.log(mode);
+    await set_override(!mode);
+    await build_popUp();
+};
+
+function render_check_box(bool_value){
+    let dock = document.getElementById("check");
+    dock.checked = bool_value;
 };

@@ -1,12 +1,14 @@
 
 const URLS = "urls";
 const MODE = "mode";
+const OVERRIDE = 'override';
 const STORAGE = browser.storage.local;
 
 setListener();
 
 async function setListener(){
     let mode = await get_mode();
+    let override = await get_override();
     let host_keeped = await check_domain();
     if(mode){
         if(host_keeped){
@@ -20,7 +22,10 @@ async function setListener(){
             window.addEventListener('click', function(){
                 overload_target();
             });
-            override_window_open();
+            if(override){
+                override_window_open();
+            }
+            
         }
     }
 };
@@ -32,6 +37,14 @@ async function get_mode(){
     }
     return value.mode;
 };
+
+async function get_override(){
+    let value = await STORAGE.get(OVERRIDE);
+    if(value.override === undefined){
+        return false;
+    }
+    return value.override;
+}
 
 
 async function check_domain(){
