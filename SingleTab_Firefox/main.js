@@ -1,3 +1,4 @@
+
 const URLS = "urls";
 const MODE = "mode";
 const STORAGE = browser.storage.local;
@@ -13,6 +14,13 @@ async function setListener(){
             window.addEventListener('scroll', function(){
                 overload_target();
             });
+            window.addEventListener('load', function(){
+                overload_target();
+            });
+            window.addEventListener('click', function(){
+                overload_target();
+            });
+            override_window_open();
         }
     }
 };
@@ -30,7 +38,6 @@ async function check_domain(){
     let value = await STORAGE.get(URLS);
     domain = window.location.hostname;
     if(value.urls !== undefined){
-        console.log("Extension: urls exist");
         let index = value.urls.indexOf(domain);
         if(index >= 0){
             return true;
@@ -44,4 +51,10 @@ function overload_target(){
     outer_links.forEach(link => {
         link.target = "_self";
     });
+};
+
+function override_window_open(){
+    let script = document.createElement('script');
+    script.innerHTML = "window.open = function(url, windowName, windowFeatures){ console.log('Single Tab: New window blocked'); }"
+    document.head.appendChild(script);
 };
