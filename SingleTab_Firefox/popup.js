@@ -162,7 +162,6 @@ async function set_override(bool_value){
 
 async function change_override(){
     let mode = await override_mode();
-    console.log(mode);
     await set_override(!mode);
     await build_popUp();
 };
