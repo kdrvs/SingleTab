@@ -68,6 +68,6 @@ function overload_target(){
 
 function override_window_open(){
     let script = document.createElement('script');
-    script.innerHTML = "window.open = function(url, windowName, windowFeatures){ console.log('Single Tab: New window blocked'); }"
+    script.innerHTML = "const NewWindowOpen = window.open; window.open = function(url, target, windowFeatures){ NewWindowOpen(url, '_self', windowFeatures);};";
     document.head.appendChild(script);
 };
