@@ -7,7 +7,7 @@
     <body>
         <div>
             <div class="status">
-                <p>Please, reload the page to apply changes</p>
+                <p id="warning">Please, reload the page to apply changes</p>
                 <button id="mode">Button</button>
             </div>
             <div class="new_item">
@@ -23,9 +23,9 @@
         </div>
 
         <footer>
-            <label for="checkbox">Block new windows: </label>
+            <label id="labelOfCheckbox" for="checkbox">Block new windows: </label>
             <input id="check" type="checkbox" name="check" checked >
-            <p>Blocks the opening of external tabs</p>
+            <p id="description">Blocks the opening of external tabs</p>
         </footer>
         <script type="text/javascript" src="popup.js"></script>
     </body>

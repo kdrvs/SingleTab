@@ -1,0 +1,32 @@
+{
+    "extensionName": {
+        "message": "Single Tab",
+        "description": "Name of the extension."
+      },
+
+    "extensionDescription": {
+        "message": "Blocks the opening of external tabs",
+        "description": "Description of the extension."
+    },
+
+    "extensionWarning" : {
+        "message" : "Please, reload the page to apply changes",
+        "description": "Page reload warning."
+    },
+
+    "extensionLabelOfCheckbox": {
+        "message": "Block new windows: ",
+        "description": "Checkbox for override \"window.open\""
+    },
+
+    "extensionButtonStatusOn": {
+        "message": "Enabled",
+        "description": "Button On"
+    },
+
+    "extensionButtonStatusOff": {
+        "message": "Not Enabled",
+        "description": "Button Off"
+    }
+
+}

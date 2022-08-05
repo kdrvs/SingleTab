@@ -1,0 +1,32 @@
+{
+    "extensionName": {
+        "message": "Single Tab",
+        "description": "Name of the extension."
+      },
+
+    "extensionDescription": {
+        "message": "Блокировка открытия внешних вкладок",
+        "description": "Description of the extension."
+    },
+
+    "extensionWarning" : {
+        "message" : "Для применения изменений \n перезагрузите страницу",
+        "description": "Page reload warning."
+    },
+
+    "extensionLabelOfCheckbox": {
+        "message": "Блокировать новые окна: ",
+        "description": "Checkbox for override \"window.open\""
+    },
+
+    "extensionButtonStatusOn": {
+        "message": "Включен",
+        "description": "Button On"
+    },
+
+    "extensionButtonStatusOff": {
+        "message": "Выключен",
+        "description": "Button Off"
+    }
+
+}

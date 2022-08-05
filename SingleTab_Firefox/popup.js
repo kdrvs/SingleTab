@@ -102,9 +102,9 @@ async function build_popUp(){
     let mode = await get_mode();
     let override = await override_mode();
     if(mode == true){
-        change_mode_btn(INPUT_MODE_ID, 'enabled', 'Enabled');
+        change_mode_btn(INPUT_MODE_ID, 'enabled', browser.i18n.getMessage("extensionButtonStatusOn"));
     } else {
-        change_mode_btn(INPUT_MODE_ID, 'disabled', 'Not Enabled');
+        change_mode_btn(INPUT_MODE_ID, 'disabled', browser.i18n.getMessage("extensionButtonStatusOff"));
     }
 
     let urls = await storage_get();
@@ -116,7 +116,11 @@ async function build_popUp(){
             append_value_to_list(content, url);
         });
     }
-    render_check_box(override);
+    set_check_box(override);
+
+    document.getElementById("warning").innerText = browser.i18n.getMessage("extensionWarning");
+    document.getElementById("labelOfCheckbox").innerText = browser.i18n.getMessage("extensionLabelOfCheckbox");
+    document.getElementById("description").innerText = browser.i18n.getMessage("extensionDescription");
 };
 
 function append_value_to_list(dom, value){
@@ -166,7 +170,7 @@ async function change_override(){
     await build_popUp();
 };
 
-function render_check_box(bool_value){
+function set_check_box(bool_value){
     let dock = document.getElementById("check");
     dock.checked = bool_value;
 };
