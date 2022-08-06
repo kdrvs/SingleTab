@@ -1,5 +1,5 @@
 
-## This extension blocks the opening of new tabs on sites specified by the user.
+#### This extension blocks the opening of new tabs on sites specified by the user.
 
 ### [Add to Firefox ](https://addons.mozilla.org/ru/firefox/addon/single-tab/)
 
