@@ -2,6 +2,7 @@
 #### This extension blocks the opening of new tabs on sites specified by the user.
 
 ### [Add to Firefox ](https://addons.mozilla.org/en/firefox/addon/single-tab/)
+### [Add to Chrome (crx file)](https://github.com/kdrvs/SingleTab/raw/master/SingleTab_Chrome.crx)
 
 ![1](https://user-images.githubusercontent.com/36735568/181343079-504060b4-580f-4cdf-8b32-bf8652dbf27d.png)
 
