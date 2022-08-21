@@ -1,7 +1,12 @@
 html {
     background-color: #EEE;
     color: #303030;
-    width: 250px;
+}
+
+body {
+    min-width: 200px;
+    min-height: 220px;
+    height: auto;
 }
 
 button {
@@ -104,11 +109,8 @@ input {
 }
 
 footer {
-    height: 30px;
+    font-size: 11px;
+    height: 70px;
     text-align: center;
     padding-top: 15px;
-}
-
-footer p {
-    font-size: 11px;
 }

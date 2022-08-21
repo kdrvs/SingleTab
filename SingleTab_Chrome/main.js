@@ -1,12 +1,15 @@
 
 const URLS = "urls";
 const MODE = "mode";
+const OVERRIDE = 'override';
 const STORAGE = chrome.storage.local;
+
 
 setListener();
 
 async function setListener(){
     let mode = await get_mode();
+    let override = await get_override();
     let host_keeped = await check_domain();
     if(mode){
         if(host_keeped){
@@ -20,7 +23,12 @@ async function setListener(){
             window.addEventListener('click', function(){
                 overload_target();
             });
-            //override_window_open();
+            if(override){
+                let script = document.createElement("script");
+                script.src = chrome.runtime.getURL("override.js");
+                (document.head || document.documentElement).appendChild(script);
+            }
+            
         }
     }
 };
@@ -32,6 +40,14 @@ async function get_mode(){
     }
     return value.mode;
 };
+
+async function get_override(){
+    let value = await STORAGE.get(OVERRIDE);
+    if(value.override === undefined){
+        return false;
+    }
+    return value.override;
+}
 
 
 async function check_domain(){
@@ -52,9 +68,3 @@ function overload_target(){
         link.target = "_self";
     });
 };
-
-/*function override_window_open(){
-    let script = document.createElement('script');
-    script.innerHTML = "window.open = function(url, windowName, windowFeatures){ console.log('Single Tab: New window blocked'); }"
-    document.head.appendChild(script);
-};*/
