@@ -6,9 +6,9 @@
 <details>
     <summary>How to install in Chrome</summary>
 
-    1. Download [crx file](https://github.com/kdrvs/SingleTab/raw/master/SingleTab_Chrome.crx)
-    2. Open the Chrome extensions page [chrome://extensions/](chrome://extensions/)
-    3. Drag this file to the window.
+    * Download [crx file](https://github.com/kdrvs/SingleTab/raw/master/SingleTab_Chrome.crx)
+    * Open the Chrome extensions page [chrome://extensions/](chrome://extensions/)
+    * Drag this file to the window.
 
 </details>
 
