@@ -8,7 +8,7 @@
         <p></p>
         1. Download <a href="https://github.com/kdrvs/SingleTab/raw/master/SingleTab_Chrome.crx">crx file</a>
         <p></p>
-        2. Open the Chrome extensions page <a href="chrome://extensions/">chrome://extensions/</a>
+        2. Open the Chrome extensions page: chrome://extensions
         <p></p>
         3. Drag this file to the window.
         <p></p>
