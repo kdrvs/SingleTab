@@ -87,6 +87,7 @@ async function set_mode(bool_value){
     await STORAGE.set({
         [MODE]: bool_value
     });
+    chrome.runtime.sendMessage(true); //message for background 
 };
 
 async function get_mode(){
@@ -162,6 +163,7 @@ async function set_override(bool_value){
     await STORAGE.set({
         [OVERRIDE]: bool_value
     });
+    chrome.runtime.sendMessage(true); //message for background 
 };
 
 async function change_override(){

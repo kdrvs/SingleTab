@@ -80,13 +80,14 @@ async function storage_get(){
 async function change_mode(){
     let mode = await get_mode();
     await set_mode(!mode);
-    await build_popUp();  
+    await build_popUp();
 };
 
 async function set_mode(bool_value){
     await STORAGE.set({
         [MODE]: bool_value
     });
+    browser.runtime.sendMessage(true); //message for background  
 };
 
 async function get_mode(){
@@ -162,6 +163,7 @@ async function set_override(bool_value){
     await STORAGE.set({
         [OVERRIDE]: bool_value
     });
+    browser.runtime.sendMessage(true); //message for background  
 };
 
 async function change_override(){
