@@ -33,7 +33,7 @@
     "applications": {
         "gecko": {
             "id": "SingleTab@kdrvs",
-            "strict_min_version": "48.0"
+            "strict_min_version": "52.0"
         }
     },
 
