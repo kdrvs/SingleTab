@@ -37,12 +37,21 @@ document.addEventListener('DOMContentLoaded', function(){
 
 async function set_url(){
     let url = document.getElementById(INPUT_NEWSITE_ID).value;
-    if(url != ''){
-        url = url.toLowerCase().replace(/\/|\s|:|https|http/g,'');
-        if(url !== undefined){
-            await storage_set(url);
+    if(url != '' && url != undefined){
+        let host;
+        try {
+            host = new URL(url).hostname;
+        } catch {
+            try {
+                host = new URL("https://" + url).hostname;
+            } catch {
+                return;
+            }
+        }
+        if(host != undefined){
+            await storage_set(host);
             build_popUp();
-        }   
+        }
     }
 };
 
@@ -108,9 +117,24 @@ async function build_popUp(){
         change_mode_btn(INPUT_MODE_ID, 'disabled', chrome.i18n.getMessage("extensionButtonStatusOff"));
     }
 
+    let input = document.getElementById(INPUT_NEWSITE_ID);
+    input.value = '';
+
+    let current_hostname = "";
+    await chrome.tabs.query({active:true,currentWindow:true}).then(function(tabs){
+        current_hostname = new URL(tabs[0].url).hostname;
+    });
+
+    let check_host = await check_domain(current_hostname);
+    if(current_hostname != "newtab"){
+        if(!check_host){
+            input.value = current_hostname;
+        }
+    }
+    
+
     let urls = await storage_get();
     if(urls !== undefined){
-        document.getElementById(INPUT_NEWSITE_ID).value = '';
         var content = document.getElementById(URLS_ARRAY_ID);
         content.innerHTML = '';
         urls.forEach(url => {
@@ -148,6 +172,17 @@ function change_mode_btn(dom, _class, text){
     let btn = document.getElementById(dom);
     btn.className = _class;
     btn.innerText = text;
+};
+
+async function check_domain(domain){
+    let value = await STORAGE.get(URLS);
+    if(value.urls !== undefined){
+        let index = value.urls.indexOf(domain);
+        if(index >= 0){
+            return true;
+        }
+    }
+    return false;
 };
 
 async function override_mode(){
