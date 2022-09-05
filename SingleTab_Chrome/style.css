@@ -91,6 +91,7 @@ input {
     height: 20px;
     display: inline-grid;
     vertical-align: bottom;
+    background-color: #66CDAA;
     background-image: url(/icons/append.png);
     background-repeat: no-repeat;
     background-size: contain;
