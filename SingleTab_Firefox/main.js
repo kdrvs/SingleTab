@@ -49,7 +49,7 @@ async function get_override(){
 
 async function check_domain(){
     let value = await STORAGE.get(URLS);
-    domain = window.location.hostname;
+    let domain = window.location.hostname;
     if(value.urls !== undefined){
         let index = value.urls.indexOf(domain);
         if(index >= 0){
