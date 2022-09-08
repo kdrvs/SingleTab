@@ -27,6 +27,11 @@
     "extensionButtonStatusOff": {
         "message": "Выключен",
         "description": "Button Off"
+    },
+
+    "extensionCheckBoxTitle": {
+        "message": "Опция переопределяет скрипты, открывающие новые окна. \n Они будут открываться в родительском окне.",
+        "description": "Check Box Title"
     }
 
 }

@@ -27,6 +27,11 @@
     "extensionButtonStatusOff": {
         "message": "Not Enabled",
         "description": "Button Off"
+    },
+
+    "extensionCheckBoxTitle": {
+        "message": "Blocks scripts that open new windows. \n They will opening in the parent window.",
+        "description": "Check Box Title"
     }
 
 }

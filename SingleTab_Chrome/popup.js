@@ -146,6 +146,7 @@ async function build_popUp(){
     document.getElementById("warning").innerText = chrome.i18n.getMessage("extensionWarning");
     document.getElementById("labelOfCheckbox").innerText = chrome.i18n.getMessage("extensionLabelOfCheckbox");
     document.getElementById("description").innerText = chrome.i18n.getMessage("extensionDescription");
+    document.getElementById("check").title = chrome.i18n.getMessage("extensionCheckBoxTitle");
 };
 
 function append_value_to_list(dom, value){
