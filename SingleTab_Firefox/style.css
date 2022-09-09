@@ -30,12 +30,14 @@ button {
     width: 100px;
     height: 25px;
     background-color: #66CDAA;
+    padding-bottom: 3px;
 }
 
 .disabled {
     width: 100px;
     height: 25px;
     background-color: #ccc;
+    padding-bottom: 3px;
 }
 
 .del_btn{
