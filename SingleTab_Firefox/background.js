@@ -66,7 +66,6 @@ async function updateBadge(){
 
 async function check_domain(url){
     let value = await STORAGE.get(URLS);
-    console.log("url is " + url);
     if(value.urls !== undefined){
         let index = value.urls.indexOf(url);
         if(index >= 0){
