@@ -70,6 +70,7 @@ async function storage_set(url){
         await STORAGE.set({
             [URLS]: array
         });
+        chrome.runtime.sendMessage(true); //message for background 
     }
 };
 
@@ -79,6 +80,7 @@ async function storage_delete(value){
     await STORAGE.set({
         [URLS]: array
     });
+    chrome.runtime.sendMessage(true); //message for background 
 };
 
 async function storage_get(){
