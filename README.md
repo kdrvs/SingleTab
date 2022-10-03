@@ -17,6 +17,9 @@
 
 ![1](https://user-images.githubusercontent.com/36735568/181343079-504060b4-580f-4cdf-8b32-bf8652dbf27d.png)
 
+#### 1.1.5
+ * added indicator to icon
+
 #### 1.1.4
  * Firefox: fix css 
  * Added title for checkbox
