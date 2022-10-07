@@ -53,7 +53,7 @@ async function updateBadge(){
         tab = tabs[0];
     });
     let Mode = await STORAGE.get(MODE);
-    let host_keeped = await check_domain(new URL(tab.url).hostname);
+    let host_keeped = await check_domain(tab.url == "" ? "" : new URL(tab.url).hostname);
     if(Mode.mode && host_keeped){
         chrome.action.setBadgeText({text: '✓'});
         

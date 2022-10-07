@@ -74,7 +74,7 @@ input {
 }
 .new_item {
     text-align: center;
-    padding-bottom: 15px;
+    padding-bottom: 25px;
     margin-bottom: 10px;
     border-bottom: 1px solid #ccc;
 
@@ -114,4 +114,20 @@ footer {
     height: 70px;
     text-align: center;
     padding-top: 15px;
+}
+
+.expand {    
+    text-align: center;
+    margin-top: -25px;
+}
+
+.hide_table {         
+    height: 30px;
+    width: 30px;
+    background-color: #66CDAA;
+    color: #666;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    border-radius: 50%;
 }

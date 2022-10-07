@@ -9,6 +9,8 @@ const URLS = "urls";
 const MODE = "mode";
 const OVERRIDE = 'override';
 const STORAGE = chrome.storage.local;
+const EXPAND = "expand";   
+const EXPAND_BUTTON_ID = "hide_table"; 
 
 
 build_popUp();
@@ -31,6 +33,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
     document.getElementById(CHECK)
     .addEventListener('click', change_override);
+
+    document.getElementById(EXPAND_BUTTON_ID)
+    .addEventListener('click', changeExpand);
 
 });
 
@@ -134,6 +139,12 @@ async function build_popUp(){
         }
     }
     
+    let expand = await getExpand();
+    if(expand) {
+        document.getElementById(URLS_ARRAY_ID).style.display = "table";
+    } else {
+        document.getElementById(URLS_ARRAY_ID).style.display = "none";
+    }
 
     let urls = await storage_get();
     if(urls !== undefined){
@@ -149,6 +160,7 @@ async function build_popUp(){
     document.getElementById("labelOfCheckbox").innerText = chrome.i18n.getMessage("extensionLabelOfCheckbox");
     document.getElementById("description").innerText = chrome.i18n.getMessage("extensionDescription");
     document.getElementById("check").title = chrome.i18n.getMessage("extensionCheckBoxTitle");
+    document.getElementById(EXPAND_BUTTON_ID).title = chrome.i18n.getMessage("extensionHideButtonTitle");
 };
 
 function append_value_to_list(dom, value){
@@ -214,3 +226,35 @@ function set_check_box(bool_value){
     let dock = document.getElementById("check");
     dock.checked = bool_value;
 };
+
+async function getExpand(){
+    let expand = await STORAGE.get(EXPAND);
+    if (expand.expand === undefined){
+        await setExpand(true);
+        expand = await STORAGE.get(EXPAND);
+    }
+    return expand.expand;
+}
+
+async function setExpand(bool_value){
+    await STORAGE.set({
+        [EXPAND]: bool_value
+    });
+}
+
+async function changeExpand(){
+    let button = document.getElementById(EXPAND_BUTTON_ID);
+    let round = 360;
+    let deg = 0;
+    let parsed = Number.parseInt(button.style.rotate.replace("deg", ""));
+    if(!Number.isNaN(parsed)){
+        deg = parsed;
+    }
+    deg += round;
+    button.style.rotate = deg + "deg";
+    button.style.transition = "1s";
+
+    let expand = await getExpand();
+    await setExpand(!expand);
+    await build_popUp();
+}

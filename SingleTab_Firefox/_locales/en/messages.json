@@ -32,6 +32,11 @@
     "extensionCheckBoxTitle": {
         "message": "Blocks scripts that open new windows. \nThey will opening in the parent window.",
         "description": "Check Box Title"
+    },
+
+    "extensionHideButtonTitle": {
+        "message": "Show or hide list",
+        "description": "Hide Button Title"
     }
 
 }
